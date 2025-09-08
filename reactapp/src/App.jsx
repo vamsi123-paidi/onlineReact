@@ -1,34 +1,37 @@
+import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
 import Home from "./components/Home"
-import './App.css'
-import Array from "./components/Array"
-import Counter from "./components/Counter"
-import Input from "./components/Input"
-import Visble from "./components/Visble"
-import Obj from "./components/Obj"
-import BasicSyntax from "./useEffect/BasicSyntax"
-import DependencyExample from "./useEffect/DependencyExample"
-import FetchData from "./useEffect/fetchData"
-import ProperFetch from "./useEffect/ProperFetch"
-const App = ()=>{
-  const user ={
-    name:"abhi",
-    age:25,
-    company:"techfortune"
-  }
-  return(
-   <>
-      <div>APP.jsx content</div>
-      {/* <Counter/>
-      <Input/>
-      <Visble/>
-      <Array/>
-      <Obj/>
-      <BasicSyntax/>
-      <DependencyExample/>
-      <FetchData/> */}
-      <ProperFetch/>
-   </>
-   
+import About from "./components/About"
+import NavbarComp from "./components/NavbarComp"
+import Login from "./components/Login"
+import Dashboard from "./components/Dashboard"
+import UserProfile from "./components/UserProfile"
+import Profile from "./components/Profile"
+import Settings from "./components/Settings"
+import ProtectedRoute from "./ProtectRouting/ProtectedRoute"
+import DashboardPage from "./ProtectRouting/DashboardPage"
+import LoginPage from "./ProtectRouting/LoginPage"
+const App = () => {
+
+  return (
+    <>
+        <Router>
+          <NavbarComp/>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About/>}/>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/dashboard" element={<Dashboard/>}>
+              <Route path="profile" element={<Profile/>}/>
+              <Route path="settings" element={<Settings/>}/>
+            </Route>
+            <Route path="/loginpage" element={<LoginPage/>}/>
+            <Route path="/users/:userID" element={<UserProfile/>}/>
+            <Route path="/dashboardpage" element={<ProtectedRoute>
+              <DashboardPage/>
+            </ProtectedRoute>}/>
+          </Routes>
+        </Router>
+    </>
   )
 }
 

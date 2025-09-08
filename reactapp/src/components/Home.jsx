@@ -1,11 +1,11 @@
 import React from 'react'
 import About from './About'
 
-const Home = ({user}) => {
+const Home = () => {
   return (
     <div>
-        <About user={user}/>
-        <h1>{user.name} is from home</h1>
+        {/* <About user={user}/> */}
+        <h1>this is from home</h1>
         <div>Home data</div>
     </div>
   )
