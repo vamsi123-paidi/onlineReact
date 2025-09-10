@@ -6,24 +6,25 @@ const Login = () => {
         email: "",
         password: ""
     })
-    const [error,setError] = useState("")
+    const [error, setError] = useState("")
     const navigate = useNavigate()
 
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: [e.target.value] })
+        setForm({ ...form, [e.target.name]: e.target.value })
     }
 
-    const handleSubmit = (e)=>{
-        e.preventDefault();
-        const storedData = JSON.parse(localStorage.getItem("user"));
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        const storedData = JSON.parse(localStorage.getItem("user"))
         console.log(storedData)
         console.log(form)
 
-        if(storedData && storedData.email === form.email && storedData.password===form.password){
-            localStorage.setItem("currentUser",JSON.stringify(storedData))
+        if (storedData && storedData.email === form.email && storedData.password === form.password) {
+            localStorage.setItem("currentUser", JSON.stringify(storedData))
             navigate('/dashboard')
-        }else{
-            setError("invalid user data")
+        } else {
+            setError("Invalid user data")
         }
     }
 
@@ -31,11 +32,27 @@ const Login = () => {
         <>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email:</label><br />
-                <input type="email" name='email' placeholder='enter Email' value={form.email} onChange={handleChange} required /><br />
-                <label htmlFor="password">password:</label><br />
-                <input type="password" name='password' placeholder='enter password' value={form.password} onChange={handleChange} required /><br />
-                <p style={{color:"red"}}>{error}</p>
-                <button>Submit</button>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter email"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                /><br />
+
+                <label htmlFor="password">Password:</label><br />
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter password"
+                    value={form.password}
+                    onChange={handleChange}
+                    required
+                /><br />
+
+                <p style={{ color: "red" }}>{error}</p>
+                <button type="submit">Submit</button>
             </form>
         </>
     )

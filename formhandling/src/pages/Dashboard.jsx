@@ -16,7 +16,7 @@ export default function Dashboard() {
   return (
     <div>
       <h2>Dashboard</h2>
-      <p>Welcome, {currentUser.name}!</p>
+      <p>Welcome, {currentUser.username}!</p>
       <button onClick={handleLogout}>Logout</button>
     </div>
   );
